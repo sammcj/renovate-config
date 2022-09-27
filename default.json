@@ -1,0 +1,144 @@
+{
+  "extends": [
+    ":ignoreModulesAndTests",
+    ":label(renovate)",
+    ":prConcurrentLimit10",
+    ":prNotPending",
+    ":timezone(Australia/Melbourne)",
+    ":automergePatch",
+    ":separatePatchReleases",
+    "helpers:disableTypesNodeMajor",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "schedule": "at any time",
+  "rangeStrategy": "bump",
+  "assignees": ["sammcj"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "before 3am every saturday"
+  },
+  "vulnerabilityAlerts": {
+    "commitMessagePrefix": "chore(renovate): Security update",
+    "labels": ["security"]
+  },
+  "ignorePaths": ["files/**", "node_modules/**"],
+  "packageRules": [
+    {
+      "description": "Automerge non-major Github Actions updates",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchManagers": "github-actions",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "matchManagers": "github-actions",
+      "groupName": "github-actions"
+    },
+    {
+      "matchUpdateTypes": ["major", "pin"],
+      "matchManagers": "github-actions",
+      "groupName": "github-actions-major"
+    },
+    {
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "semanticCommitType": "fix"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["major"],
+      "reviewersFromCodeOwners": true,
+      "addLabels": ["renovatebot", "major", "version-update"],
+      "commitMessagePrefix": "chore(renovate): major",
+      "groupName": "major",
+      "semanticCommitType": "chore"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor"],
+      "reviewersFromCodeOwners": true,
+      "addLabels": ["renovatebot", "minor", "version-update"],
+      "commitMessagePrefix": "chore(renovate): minor",
+      "groupName": "minor",
+      "semanticCommitType": "chore"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["patch"],
+      "reviewersFromCodeOwners": true,
+      "addLabels": ["renovatebot", "patch", "version-update"],
+      "commitMessagePrefix": "chore(renovate): patch",
+      "groupName": "patch",
+      "semanticCommitType": "chore"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["pin", "digest"],
+      "reviewersFromCodeOwners": true,
+      "addLabels": ["renovatebot", "pin", "version-update"],
+      "commitMessagePrefix": "chore(renovate): pin",
+      "groupName": "pin",
+      "semanticCommitType": "chore"
+    }
+  ],
+  "npm": {
+    "extends": [
+      "npm:unpublishSafe",
+      "group:monorepos",
+      "group:jestPlusTSJest",
+      "packages:eslint",
+      "local>sammcj/renovate-config"
+    ],
+    "rangeStrategy": "bump",
+    "matchManagers": ["npm"],
+    "postUpdateOptions": ["npmDedupe"],
+    "lockFileMaintenance": {
+      "enabled": true
+    },
+    "packageRules": [
+      {
+        "groupName": "jest monorepo",
+        "matchPackageNames": ["@types/jest"]
+      },
+      {
+        "description": "automerge minor updates of widely used libraries in devDependencies",
+        "matchUpdateTypes": ["minor"],
+        "matchDepTypes": ["devDependencies"],
+        "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
+        "automerge": true,
+        "matchPackageNames": [
+          "chai",
+          "eslint-config-prettier",
+          "eslint-plugin-deprecation",
+          "eslint-plugin-import",
+          "eslint-plugin-jsx-a11y",
+          "eslint-plugin-prettier",
+          "eslint-plugin-react-hooks",
+          "eslint-plugin-react",
+          "eslint-plugin-unused-imports",
+          "glob",
+          "husky",
+          "lint-staged",
+          "mocha",
+          "npm-run-all",
+          "prettier",
+          "renovate"
+        ]
+      },
+      {
+        "description": "automerge minor updates of widely used libraries in main dependencies",
+        "matchUpdateTypes": ["minor"],
+        "matchDepTypes": ["dependencies"],
+        "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
+        "automerge": true,
+        "matchPackageNames": [
+          "@actions/core",
+          "@actions/github",
+          "@octokit/core",
+          "@octokit/rest",
+          "jsonwebtoken",
+          "renovate"
+        ]
+      }
+    ]
+  }
+}
