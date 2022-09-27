@@ -4,7 +4,8 @@ My [shareable config](https://renovatebot.com/docs/config-presets/) for [Renovat
 
 ## Setup
 
-Enable Renovate in your repo and just `extends` in `renovate.json`.
+1. Enable Renovate in your repo
+2. Add this repo to `extends` in your `renovate.json`.
 
 ```js
 {
@@ -12,8 +13,9 @@ Enable Renovate in your repo and just `extends` in `renovate.json`.
 }
 ```
 
-Note: You don't have to do `npm i -D @sammcj/renovate-config`.
-Renovate fetches it from this GitHub repo automatically.
+You don't have to do `npm i -D @sammcj/renovate-config` - Renovate fetches it from this GitHub repo automatically.
+
+Note: By default my config does auto-merge pin/minor/patch if there isn't a CODEOWNERS file preventing it.
 
 ## Presets
 
