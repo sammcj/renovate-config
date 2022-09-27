@@ -24,6 +24,11 @@
   "ignorePaths": ["files/**", "node_modules/**"],
   "packageRules": [
     {
+      "matchPackageNames": ["renovate"],
+      "matchManagers": ["npm"],
+      "stabilityDays": 0
+    },
+    {
       "description": "Automerge non-major Github Actions updates",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "matchManagers": "github-actions",
