@@ -1,0 +1,13 @@
+{
+  "extends": ["local>sammcj/renovate-config"],
+  "npm": {
+    "schedule": ["after 7am before 9am"]
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["renovate"],
+      "matchManagers": ["npm"],
+      "stabilityDays": 0
+    }
+  ]
+}
