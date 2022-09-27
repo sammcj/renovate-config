@@ -21,6 +21,9 @@
     "commitMessagePrefix": "chore(renovate): Security update",
     "labels": ["security"]
   },
+  "github-actions": {
+    "fileMatch": ["^(sync-files/workflows).*/[^/]+.ya?ml$"]
+  },
   "ignorePaths": ["files/**", "node_modules/**"],
   "packageRules": [
     {
