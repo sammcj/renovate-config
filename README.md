@@ -43,7 +43,7 @@ Note: By default my config auto-merges pin/minor/patch updates if there isn't a 
 - Disable major upgrade of `@types/node`
 - Upgrade semver ranges to latest version even if latest version satisfies existing range.
 - Group ESLint, ESLint configs, ESLint plugins and Prettier together
-- Automerge minor updates of widely used libraries like `mocha` in devDeps
+- Automerge minor updates of widely used libraries like `mocha` in devDependencies.
 
 #### for lock file maintenance
 
