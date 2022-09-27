@@ -7,14 +7,18 @@
     ":timezone(Australia/Melbourne)",
     ":automergePatch",
     ":separatePatchReleases",
+    ":dependencyDashboard",
     "helpers:disableTypesNodeMajor",
     "helpers:pinGitHubActionDigests"
   ],
   "schedule": "at any time",
   "rangeStrategy": "bump",
   "assignees": ["sammcj"],
+  "reviewers": ["sammcj"],
   "lockFileMaintenance": {
     "enabled": true,
+    "automerge": true,
+    "automergeType": "branch",
     "schedule": "before 3am every saturday"
   },
   "vulnerabilityAlerts": {
@@ -35,17 +39,15 @@
       "description": "Automerge non-major Github Actions updates",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "matchManagers": "github-actions",
-      "automerge": true
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
-      "matchUpdateTypes": ["minor", "patch", "digest"],
       "matchManagers": "github-actions",
+      "automerge": true,
+      "automergeType": "branch",
+      "separateMultipleMajor": true,
       "groupName": "github-actions"
-    },
-    {
-      "matchUpdateTypes": ["major", "pin"],
-      "matchManagers": "github-actions",
-      "groupName": "github-actions-major"
     },
     {
       "matchDepTypes": ["dependencies", "peerDependencies"],
@@ -63,7 +65,6 @@
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor"],
-      "reviewersFromCodeOwners": true,
       "addLabels": ["renovatebot", "minor", "version-update"],
       "commitMessagePrefix": "chore(renovate): minor",
       "groupName": "minor",
@@ -72,19 +73,21 @@
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["patch"],
-      "reviewersFromCodeOwners": true,
       "addLabels": ["renovatebot", "patch", "version-update"],
       "commitMessagePrefix": "chore(renovate): patch",
       "groupName": "patch",
+      "automerge": true,
+      "automergeType": "branch",
       "semanticCommitType": "chore"
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["pin", "digest"],
-      "reviewersFromCodeOwners": true,
       "addLabels": ["renovatebot", "pin", "version-update"],
       "commitMessagePrefix": "chore(renovate): pin",
       "groupName": "pin",
+      "automerge": true,
+      "automergeType": "branch",
       "semanticCommitType": "chore"
     }
   ],
@@ -98,6 +101,7 @@
     ],
     "rangeStrategy": "bump",
     "postUpdateOptions": ["npmDedupe"],
+    "transitiveRemediation": true,
     "lockFileMaintenance": {
       "enabled": true
     },
@@ -114,6 +118,7 @@
         "matchManagers": ["npm"],
         "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
         "automerge": true,
+        "automergeType": "branch",
         "matchPackageNames": [
           "chai",
           "eslint-config-prettier",
@@ -140,6 +145,7 @@
         "matchManagers": ["npm"],
         "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
         "automerge": true,
+        "automergeType": "branch",
         "matchPackageNames": [
           "@actions/core",
           "@actions/github",
