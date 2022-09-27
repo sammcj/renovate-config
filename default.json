@@ -89,7 +89,6 @@
       "local>sammcj/renovate-config"
     ],
     "rangeStrategy": "bump",
-    "matchManagers": ["npm"],
     "postUpdateOptions": ["npmDedupe"],
     "lockFileMaintenance": {
       "enabled": true
@@ -97,12 +96,14 @@
     "packageRules": [
       {
         "groupName": "jest monorepo",
+        "matchManagers": ["npm"],
         "matchPackageNames": ["@types/jest"]
       },
       {
         "description": "automerge minor updates of widely used libraries in devDependencies",
         "matchUpdateTypes": ["minor"],
         "matchDepTypes": ["devDependencies"],
+        "matchManagers": ["npm"],
         "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
         "automerge": true,
         "matchPackageNames": [
@@ -128,6 +129,7 @@
         "description": "automerge minor updates of widely used libraries in main dependencies",
         "matchUpdateTypes": ["minor"],
         "matchDepTypes": ["dependencies"],
+        "matchManagers": ["npm"],
         "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
         "automerge": true,
         "matchPackageNames": [
