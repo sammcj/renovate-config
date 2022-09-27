@@ -15,11 +15,13 @@ My [shareable config](https://renovatebot.com/docs/config-presets/) for [Renovat
 
 You don't have to do `npm i -D @sammcj/renovate-config` - Renovate fetches it from this GitHub repo automatically.
 
-Note: By default my config does auto-merge pin/minor/patch if there isn't a CODEOWNERS file preventing it.
+Note: By default my config auto-merges pin/minor/patch updates if there isn't a CODEOWNERS file preventing it.
 
 ## Presets
 
 ### `github>sammcj/renovate-config` (`default`)
+
+[Default config](default.json)
 
 #### General
 
