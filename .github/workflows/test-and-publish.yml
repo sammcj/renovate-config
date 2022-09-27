@@ -23,3 +23,10 @@ jobs:
       - run: npm i -g npm@latest
       - run: npm ci
       - run: npm test
+      - uses: JS-DevTools/npm-publish@v1
+        id: publish
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}" >> $GITHUB_STEP_SUMMARY

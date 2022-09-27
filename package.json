@@ -3,6 +3,9 @@
   "description": "My shareable config for Renovate (renovatebot.com)",
   "version": "0.0.1",
   "author": "Sam McLeod",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [],
   "scripts": {
     "test": "run-s validate:*",
