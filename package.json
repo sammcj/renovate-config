@@ -1,7 +1,7 @@
 {
   "name": "@sammcj/renovate-config",
   "description": "My shareable config for Renovate (renovatebot.com)",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Sam McLeod",
   "publishConfig": {
     "access": "public"

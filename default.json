@@ -1,15 +1,31 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
+    ":autodetectPinVersions",
+    ":automergePatch",
+    ":dependencyDashboard",
     ":ignoreModulesAndTests",
     ":label(renovate)",
     ":prConcurrentLimit10",
     ":prNotPending",
-    ":timezone(Australia/Melbourne)",
-    ":automergePatch",
+    ":rebaseStalePrs",
+    ":semanticPrefixFixDepsChoreOthers",
     ":separatePatchReleases",
-    ":dependencyDashboard",
+    ":timezone(Australia/Melbourne)",
+    "monorepo:aws-sdk-js-v3",
+    "monorepo:aws-cdk¶",
+    "group:jekyllEcosystem",
+    "group:jestPlusTSJest",
+    "group:monorepos",
+    "group:recommended",
     "helpers:disableTypesNodeMajor",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "npm:unpublishSafe",
+    "packages:eslint",
+    "preview:dockerCompose",
+    "preview:dockerVersions",
+    "replacements:babel-eslint-to-eslint-parser",
+    "workarounds:all"
   ],
   "schedule": "at any time",
   "rangeStrategy": "bump",
@@ -28,7 +44,7 @@
   "github-actions": {
     "fileMatch": ["^(sync-files/workflows).*/[^/]+.ya?ml$"]
   },
-  "ignorePaths": ["files/**", "node_modules/**"],
+  "ignorePaths": ["files/**"],
   "packageRules": [
     {
       "matchPackageNames": ["renovate"],
@@ -54,51 +70,46 @@
       "semanticCommitType": "fix"
     },
     {
+      "matchManagers": ["docker-compose", "dockerfile"],
+      "groupName": "docker",
+      "addLabels": ["docker"]
+    },
+    {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
       "reviewersFromCodeOwners": true,
-      "addLabels": ["renovatebot", "major", "version-update"],
+      "addLabels": ["major", "version-update"],
       "commitMessagePrefix": "chore(renovate): major",
-      "groupName": "major",
-      "semanticCommitType": "chore"
+      "groupName": "major"
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor"],
-      "addLabels": ["renovatebot", "minor", "version-update"],
+      "addLabels": ["minor", "version-update"],
       "commitMessagePrefix": "chore(renovate): minor",
-      "groupName": "minor",
-      "semanticCommitType": "chore"
+      "groupName": "minor"
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["patch"],
-      "addLabels": ["renovatebot", "patch", "version-update"],
+      "addLabels": ["patch", "version-update"],
       "commitMessagePrefix": "chore(renovate): patch",
       "groupName": "patch",
       "automerge": true,
-      "automergeType": "branch",
-      "semanticCommitType": "chore"
+      "automergeType": "branch"
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["pin", "digest"],
-      "addLabels": ["renovatebot", "pin", "version-update"],
+      "addLabels": ["pin", "version-update"],
       "commitMessagePrefix": "chore(renovate): pin",
       "groupName": "pin",
       "automerge": true,
-      "automergeType": "branch",
-      "semanticCommitType": "chore"
+      "automergeType": "branch"
     }
   ],
   "npm": {
-    "extends": [
-      "npm:unpublishSafe",
-      "group:monorepos",
-      "group:jestPlusTSJest",
-      "packages:eslint",
-      "local>sammcj/renovate-config"
-    ],
+    "extends": ["local>sammcj/renovate-config"],
     "rangeStrategy": "bump",
     "postUpdateOptions": ["npmDedupe"],
     "transitiveRemediation": true,
@@ -116,24 +127,29 @@
         "matchUpdateTypes": ["minor"],
         "matchDepTypes": ["devDependencies"],
         "matchManagers": ["npm"],
-        "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
+        "addLabels": ["minor", "version-update", "automerge"],
         "automerge": true,
         "automergeType": "branch",
         "matchPackageNames": [
           "chai",
           "eslint-config-prettier",
           "eslint-plugin-deprecation",
+          "eslint-plugin-deprecation",
           "eslint-plugin-import",
-          "eslint-plugin-jsx-a11y",
+          "eslint-plugin-prettier",
           "eslint-plugin-prettier",
           "eslint-plugin-react-hooks",
           "eslint-plugin-react",
           "eslint-plugin-unused-imports",
+          "eslint-plugin-unused-imports",
+          "eslint",
           "glob",
           "husky",
+          "lerna",
           "lint-staged",
           "mocha",
           "npm-run-all",
+          "prettier-plugin-packagejson",
           "prettier",
           "renovate"
         ]
@@ -143,7 +159,7 @@
         "matchUpdateTypes": ["minor"],
         "matchDepTypes": ["dependencies"],
         "matchManagers": ["npm"],
-        "addLabels": ["renovatebot", "minor", "version-update", "automerge"],
+        "addLabels": ["minor", "version-update", "automerge"],
         "automerge": true,
         "automergeType": "branch",
         "matchPackageNames": [
