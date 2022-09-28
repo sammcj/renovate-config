@@ -1,5 +1,3 @@
-#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
-
-# Sam McLeod, Renovate Approval App
-* @sammcj
-app/renovate-approve
+# Sam McLeod
+default.json @sammcj
+README.md @sammcj
