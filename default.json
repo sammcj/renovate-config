@@ -1,0 +1,174 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":autodetectPinVersions",
+    ":automergePatch",
+    ":dependencyDashboard",
+    ":ignoreModulesAndTests",
+    ":label(renovate)",
+    ":prConcurrentLimit10",
+    ":prNotPending",
+    ":rebaseStalePrs",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":separatePatchReleases",
+    ":timezone(Australia/Melbourne)",
+    "monorepo:aws-sdk-js-v3",
+    "monorepo:aws-cdk",
+    "group:jekyllEcosystem",
+    "group:jestPlusTSJest",
+    "group:monorepos",
+    "group:recommended",
+    "helpers:disableTypesNodeMajor",
+    "helpers:pinGitHubActionDigests",
+    "npm:unpublishSafe",
+    "packages:eslint",
+    "preview:dockerCompose",
+    "preview:dockerVersions",
+    "replacements:babel-eslint-to-eslint-parser",
+    "workarounds:all"
+  ],
+  "schedule": "at any time",
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "branch",
+    "schedule": "before 3am every saturday"
+  },
+  "vulnerabilityAlerts": {
+    "commitMessagePrefix": "chore(renovate): Security update",
+    "labels": ["security"]
+  },
+  "github-actions": {
+    "fileMatch": ["^(sync-files/workflows).*/[^/]+.ya?ml$"]
+  },
+  "ignorePaths": ["files/**"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["renovate"],
+      "matchManagers": ["npm"],
+      "stabilityDays": 0
+    },
+    {
+      "description": "Automerge non-major Github Actions updates",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchManagers": "github-actions",
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "matchManagers": "github-actions",
+      "automerge": true,
+      "automergeType": "branch",
+      "separateMultipleMajor": true,
+      "groupName": "github-actions"
+    },
+    {
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "semanticCommitType": "fix"
+    },
+    {
+      "matchManagers": ["docker-compose", "dockerfile"],
+      "groupName": "docker",
+      "addLabels": ["docker"]
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["major"],
+      "reviewersFromCodeOwners": true,
+      "addLabels": ["major", "version-update"],
+      "commitMessagePrefix": "chore(renovate): major",
+      "groupName": "major"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor"],
+      "addLabels": ["minor", "version-update"],
+      "commitMessagePrefix": "chore(renovate): minor",
+      "groupName": "minor"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["patch"],
+      "addLabels": ["patch", "version-update"],
+      "commitMessagePrefix": "chore(renovate): patch",
+      "groupName": "patch",
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["pin", "digest"],
+      "addLabels": ["pin", "version-update"],
+      "commitMessagePrefix": "chore(renovate): pin",
+      "groupName": "pin",
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ],
+  "npm": {
+    "extends": ["local>sammcj/renovate-config"],
+    "rangeStrategy": "bump",
+    "postUpdateOptions": ["npmDedupe"],
+    "transitiveRemediation": true,
+    "lockFileMaintenance": {
+      "enabled": true
+    },
+    "packageRules": [
+      {
+        "groupName": "jest monorepo",
+        "matchManagers": ["npm"],
+        "matchPackageNames": ["@types/jest"]
+      },
+      {
+        "description": "automerge minor updates of widely used libraries in devDependencies",
+        "matchUpdateTypes": ["minor"],
+        "matchDepTypes": ["devDependencies"],
+        "matchManagers": ["npm"],
+        "addLabels": ["minor", "version-update", "automerge"],
+        "automerge": true,
+        "automergeType": "branch",
+        "matchPackageNames": [
+          "chai",
+          "eslint-config-prettier",
+          "eslint-plugin-deprecation",
+          "eslint-plugin-deprecation",
+          "eslint-plugin-import",
+          "eslint-plugin-prettier",
+          "eslint-plugin-prettier",
+          "eslint-plugin-react-hooks",
+          "eslint-plugin-react",
+          "eslint-plugin-unused-imports",
+          "eslint-plugin-unused-imports",
+          "eslint",
+          "glob",
+          "husky",
+          "lerna",
+          "lint-staged",
+          "mocha",
+          "npm-run-all",
+          "prettier-plugin-packagejson",
+          "prettier",
+          "renovate"
+        ]
+      },
+      {
+        "description": "automerge minor updates of widely used libraries in main dependencies",
+        "matchUpdateTypes": ["minor"],
+        "matchDepTypes": ["dependencies"],
+        "matchManagers": ["npm"],
+        "addLabels": ["minor", "version-update", "automerge"],
+        "automerge": true,
+        "automergeType": "branch",
+        "matchPackageNames": [
+          "@actions/core",
+          "@actions/github",
+          "@octokit/core",
+          "@octokit/rest",
+          "jsonwebtoken",
+          "renovate"
+        ]
+      }
+    ]
+  }
+}
