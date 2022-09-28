@@ -29,8 +29,6 @@
   ],
   "schedule": "at any time",
   "rangeStrategy": "bump",
-  "assignees": ["sammcj"],
-  "reviewers": ["sammcj"],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
