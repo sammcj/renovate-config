@@ -58,8 +58,6 @@
     },
     {
       "matchManagers": "github-actions",
-      "automerge": true,
-      "automergeType": "branch",
       "separateMultipleMajor": true,
       "groupName": "github-actions"
     },
