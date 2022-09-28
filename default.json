@@ -13,7 +13,7 @@
     ":separatePatchReleases",
     ":timezone(Australia/Melbourne)",
     "monorepo:aws-sdk-js-v3",
-    "monorepo:aws-cdk¶",
+    "monorepo:aws-cdk",
     "group:jekyllEcosystem",
     "group:jestPlusTSJest",
     "group:monorepos",
