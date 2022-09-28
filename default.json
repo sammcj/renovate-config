@@ -13,7 +13,7 @@
     ":separatePatchReleases",
     ":timezone(Australia/Melbourne)",
     "monorepo:aws-sdk-js-v3",
-    "monorepo:aws-cdk¶",
+    "monorepo:aws-cdk",
     "group:jekyllEcosystem",
     "group:jestPlusTSJest",
     "group:monorepos",
@@ -29,8 +29,6 @@
   ],
   "schedule": "at any time",
   "rangeStrategy": "bump",
-  "assignees": ["sammcj"],
-  "reviewers": ["sammcj"],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
