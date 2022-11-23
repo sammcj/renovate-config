@@ -42,7 +42,7 @@
   "github-actions": {
     "fileMatch": ["^(sync-files/workflows).*/[^/]+.ya?ml$"]
   },
-  "ignorePaths": ["node_modules/**", "files/**"],
+  "ignorePaths": ["node_modules/**", "files/**", "themes/**"],
   "packageRules": [
     {
       "matchPackageNames": ["renovate"],
