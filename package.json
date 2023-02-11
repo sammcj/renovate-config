@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "npm-run-all": "4.1.5",
-    "renovate": "34.128.3",
+    "renovate": "34.130.0",
     "lint-staged": "13.1.1"
   },
   "homepage": "https://github.com/sammcj/renovate-config",
