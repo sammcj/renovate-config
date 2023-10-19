@@ -23,7 +23,7 @@ jobs:
       - run: npm i -g npm@latest
       - run: npm ci
       - run: npm test
-      - uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939 # tag=v1
+      - uses: JS-DevTools/npm-publish@fe72237be0920f7a0cafd6a966c9b929c9466e9b # v2
         id: publish
         if: github.ref == 'refs/heads/main'
         with:
