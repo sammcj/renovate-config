@@ -15,5 +15,11 @@
     ".github/workflows/mirror.yml",
     ".github/workflows/pr-labeller.yml",
     ".github/workflows/todo.yml"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["npm"],
+      "minimumReleaseAge": "3 days"
+    }
   ]
 }
