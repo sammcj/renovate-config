@@ -1,4 +1,3 @@
-#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
 name: "Pull Request Labeller"
 on:
@@ -29,10 +28,10 @@ permissions:
 jobs:
   pr-labeller:
     name: "Pull Request Labeller"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: fuxingloh/multi-labeler@f5bd7323b53b0833c1e4ed8d7b797ae995ef75b4 # tag=v2
+      - uses: fuxingloh/multi-labeler@b15a54460c38f54043fa75f7b08a0e2aa5b94b5b # v4
         id: pr-labeller
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,3 @@
-// THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW
 
 // Required packages:
 // 'eslint-config-prettier'

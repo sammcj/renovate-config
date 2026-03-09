@@ -1,11 +1,10 @@
-#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
 name: "Sync Available Github Labels"
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 4 * * *"
+    - cron: "30 4 * * 6"
 
 permissions:
   pull-requests: write
@@ -20,11 +19,11 @@ concurrency:
 jobs:
   sync-labels:
     name: Sync Github Labels
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
-      - uses: EndBug/label-sync@34787058c3498a674f22425940797579f4bd89f2 # tag=v2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: EndBug/label-sync@52074158190acb45f3077f9099fea818aa43f97a # v2.3.3
         with:
           delete-other-labels: true
           dry-run: false

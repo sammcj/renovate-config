@@ -1,4 +1,3 @@
-#### THIS FILE IS MANAGED BY AN AUTOMATED WORKFLOW ####
 
 name: "Lint Github Actions Workflows"
 on:
@@ -31,11 +30,11 @@ concurrency:
 jobs:
   lint-actions-workflows:
     name: Lint Actions Workflows
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
-      - uses: reviewdog/action-actionlint@31863360b75778136a7171692ecf0fe26fb5d630 # tag=v1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: reviewdog/action-actionlint@0d952c597ef8459f634d7145b0b044a9699e5e43 # v1.71.0
         with:
           actionlint_flags: -color -ignore 'SC2086' -ignore 'SC2129'
           fail_on_error: false
